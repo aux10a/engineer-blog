@@ -1,0 +1,113 @@
+---
+layout: default
+---
+
+<div class="review-content">
+  <article class="article-inner" itemscope itemtype="http://schema.org/Review">
+    <h2 class="article-title" itemprop="name">{{ page.title }}</h2>
+    
+    <div class="article-meta">
+      <time datetime="{{ page.date | date_to_xmlschema }}" itemprop="datePublished">
+        {{ page.date | date: "%Y年%m月%d日" }}
+      </time>
+      {% if page.author %}
+        • <span itemprop="author" itemscope itemtype="http://schema.org/Person">
+            投稿者: <span itemprop="name">{{ page.author }}</span>
+          </span>
+      {% endif %}
+    </div>
+
+    {% if page.categories %}
+    <div class="article-categories">
+      {% for cat in page.categories %}
+        <span class="tag">{{ site.category_names[cat] }}</span>
+      {% endfor %}
+    </div>
+    {% endif %}
+
+    {% if page.kit_name %}
+    <div class="kit-info-box" itemprop="itemReviewed" itemscope itemtype="http://schema.org/Product">
+      <h3>キット情報</h3>
+      <dl>
+        <dt>製品名</dt>
+        <dd itemprop="name">{{ page.kit_name }}</dd>
+        {% if page.maker %}
+        <dt>メーカー</dt>
+        <dd itemprop="manufacturer">{{ page.maker }}</dd>
+        {% endif %}
+        {% if page.scale %}
+        <dt>スケール</dt>
+        <dd>{{ page.scale }}</dd>
+        {% endif %}
+        {% if page.price %}
+        <dt>価格</dt>
+        <dd>
+          <span itemprop="offers" itemscope itemtype="http://schema.org/Offer">
+            <meta itemprop="priceCurrency" content="JPY">
+            <span itemprop="price" content="{{ page.price }}">{{ page.price }}円</span>
+          </span>
+        </dd>
+        {% endif %}
+        {% if page.rating %}
+        <dt>評価</dt>
+        <dd class="rating">
+          <span itemprop="reviewRating" itemscope itemtype="http://schema.org/Rating">
+            <meta itemprop="worstRating" content="1">
+            <meta itemprop="bestRating" content="5">
+            <span itemprop="ratingValue">{{ page.rating }}</span> / 5
+          </span>
+        </dd>
+        {% endif %}
+      </dl>
+    </div>
+    {% endif %}
+
+    <div class="article-body" itemprop="reviewBody">
+      {{ content }}
+    </div>
+
+    <div class="article-footer">
+      <div class="post-navigation">
+        <a href="/" class="nav-button">トップページへ戻る</a>
+        <a href="/archive" class="nav-button">バックナンバー一覧</a>
+      </div>
+    </div>
+  </article>
+</div>
+
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "Review",
+  "name": {{ page.title | jsonify }},
+  "author": {
+    "@type": "Person",
+    "name": {{ page.author | default: site.author.name | jsonify }}
+  },
+  "datePublished": "{{ page.date | date_to_xmlschema }}",
+  "reviewBody": {{ content | strip_html | truncate: 200 | jsonify }},
+  {% if page.kit_name %}
+  "itemReviewed": {
+    "@type": "Product",
+    "name": {{ page.kit_name | jsonify }},
+    {% if page.maker %}"manufacturer": {{ page.maker | jsonify }},{% endif %}
+    {% if page.price %}
+    "offers": {
+      "@type": "Offer",
+      "price": "{{ page.price }}",
+      "priceCurrency": "JPY"
+    },
+    {% endif %}
+    "category": {{ site.category_names[page.categories[0]] | jsonify }}
+  },
+  {% endif %}
+  {% if page.rating %}
+  "reviewRating": {
+    "@type": "Rating",
+    "ratingValue": "{{ page.rating }}",
+    "bestRating": "5",
+    "worstRating": "1"
+  }
+  {% endif %}
+}
+</script>

@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="{% if page.description %}{{ page.description }}{% else %}{{ site.description }}{% endif %}">
+  
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="{% if page.layout == 'review' %}article{% else %}website{% endif %}">
+  <meta property="og:url" content="{{ page.url | absolute_url }}">
+  <meta property="og:title" content="{% if page.title %}{{ page.title }} | {{ site.title }}{% else %}{{ site.title }}{% endif %}">
+  <meta property="og:description" content="{% if page.description %}{{ page.description }}{% else %}{{ site.description }}{% endif %}">
+  <meta property="og:image" content="{% if page.image %}{{ page.image | absolute_url }}{% else %}{{ site.url }}/assets/images/default-ogp.jpg{% endif %}">
+  
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@{{ site.twitter.username }}">
+  <meta name="twitter:title" content="{% if page.title %}{{ page.title }} | {{ site.title }}{% else %}{{ site.title }}{% endif %}">
+  <meta name="twitter:description" content="{% if page.description %}{{ page.description }}{% else %}{{ site.description }}{% endif %}">
+  <meta name="twitter:image" content="{% if page.image %}{{ page.image | absolute_url }}{% else %}{{ site.url }}/assets/images/default-ogp.jpg{% endif %}">
+
+  {% seo %}
+  <link rel="preload" href="{{ "/assets/css/style.css?v=" | append: site.github.build_revision | relative_url }}" as="style">
+  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap" as="style">
+  <link rel="stylesheet" href="{{ "/assets/css/style.css?v=" | append: site.github.build_revision | relative_url }}">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
+  
+  {% for post in site.posts limit:3 %}
+    <link rel="prefetch" href="{{ post.url | relative_url }}">
+  {% endfor %}
+
+  <script>
+    // ページ遷移の最適化
+    document.addEventListener('DOMContentLoaded', function() {
+      document.querySelectorAll('.post-card-link').forEach(function(link) {
+        link.addEventListener('click', function(e) {
+          e.preventDefault();
+          const href = this.getAttribute('href');
+          this.classList.add('clicked');
+          setTimeout(() => {
+            window.location.href = href;
+          }, 150); // トランジションと同じタイミング
+        });
+      });
+    });
+  </script>
+</head>
+<body>
+  <div id="container">
+    <div class="blog-title-outer">
+      <div class="blog-title-outer-2">
+        <div class="blog-logo">
+          <picture>
+            <source media="(max-width: 900px)"
+                    srcset="https://res.cloudinary.com/dxh2ydchg/image/upload/w_36,h_36/v1740909045/cat_ngbbyf.webp">
+            <source media="(min-width: 901px)"
+                    srcset="https://res.cloudinary.com/dxh2ydchg/image/upload/w_48,h_48/v1740909045/cat_ngbbyf.webp">
+            <img src="https://res.cloudinary.com/dxh2ydchg/image/upload/w_48,h_48/v1740909045/cat_ngbbyf.webp"
+                 alt="エンジニアの実践ログ">
+          </picture>
+        </div>
+        <div class="blog-title-outer-3">
+          <h1 id="blog-title"><a href="/">{{ site.title }}</a></h1>
+          <p id="blog-description">{{ site.tagline }}</p>
+        </div>
+      </div>
+    </div>
+
+    <div id="content">
+      <div id="main" class="column">
+        <div class="column-inner">
+          {{ content }}
+        </div>
+      </div>
+
+      <div id="sub" class="column">
+        <div class="column-inner">
+          <!-- 人気記事 -->
+          <div class="plugin-popular sidewrapper">
+            <div class="sidetitlebody">
+              <div class="sidetitle">人気記事</div>
+            </div>
+            <div class="side">
+              <!-- 後で動的に人気記事を表示するように更新 -->
+              <div class="sidebody popular-post">
+                <a href="#">
+                  <span class="popular-title">人気記事1のタイトル</span>
+                  <span class="popular-views">（準備中）</span>
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- カテゴリー -->
+          <div class="plugin-categorize sidewrapper">
+            <div class="sidetitlebody">
+              <div class="sidetitle">カテゴリー</div>
+            </div>
+            <div class="side">
+              {% for category in site.category_names %}
+                <div class="sidebody">
+                  <a href="/categories/{{ category[0] }}">{{ category[1] }}</a>
+                </div>
+              {% endfor %}
+            </div>
+          </div>
+
+          <!-- アーカイブ -->
+          <div class="plugin-archive sidewrapper">
+            <div class="sidetitlebody">
+              <div class="sidetitle">アーカイブ</div>
+            </div>
+            <div class="side">
+              {% assign postsByYearMonth = site.posts | group_by_exp:"post", "post.date | date: '%Y年%m月'" %}
+              {% for yearMonth in postsByYearMonth limit:12 %}
+                <div class="sidebody">
+                  <a href="/archive/#{{ yearMonth.name | replace: "年", "-" | replace: "月", "" }}">
+                    {{ yearMonth.name }} ({{ yearMonth.items | size }})
+                  </a>
+                </div>
+              {% endfor %}
+              {% if site.posts.size > 12 %}
+                <div class="sidebody more-archives">
+                  <a href="/archive">過去の記事をもっと見る</a>
+                </div>
+              {% endif %}
+            </div>
+          </div>
+
+          <!-- GitHub リポジトリ -->
+          <div class="plugin-jekyll sidewrapper">
+            <div class="jekyll-banner">
+              <p>技術記事のソースコードはGitHubで公開しています</p>
+              <a href="https://github.com/aunet041" class="jekyll-link">GitHubをチェック</a>
+            </div>
+          </div>
+
+          <!-- 技術情報 -->
+          <div class="plugin-guide sidewrapper">
+            <div class="guide-banner">
+              <a href="#" class="guide-link">低予算でWebサービスを作る方法</a>
+              <span class="guide-note">技術選定からデプロイまで</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer-outer">
+    <div class="footer-outer-2">
+      <div id="footer">
+        <p>&copy; {{ site.time | date: '%Y' }} {{ site.title }}</p>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

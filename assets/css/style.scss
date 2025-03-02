@@ -1,0 +1,494 @@
+---
+---
+
+/* 基本設定 */
+:root {
+  --main-color: #2c3e50;
+  --main-dark: #1a2634;
+  --accent-color: #3498db;
+  --text-dark: #2c3e50;
+  --text-light: #ffffff;
+  --bg-light: #f8f9fa;
+  --border-color: #e9ecef;
+  --hover-color: #3498db;
+}
+
+body {
+  font-family: 'Noto Sans JP', sans-serif;
+  line-height: 1.7;
+  margin: 0;
+  padding: 0;
+  background: var(--bg-light);
+}
+
+/* コンテナ */
+#container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0;
+}
+
+/* ヘッダー */
+.blog-title-outer {
+  width: 100%;
+  padding: 20px 0;
+  margin-bottom: 30px;
+  background: var(--main-color);
+  box-shadow: 0 2px 5px rgba(0,0,0,0.15);
+}
+
+.blog-title-outer-2 {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+  display: flex;
+  align-items: center;
+}
+
+.blog-logo {
+  margin-right: 15px;
+  padding: 4px;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.blog-logo img {
+  width: 48px;
+  height: 48px;
+  border-radius: 4px;
+  display: block;
+}
+
+@media screen and (max-width: 900px) {
+  .blog-logo img {
+    width: 36px;
+    height: 36px;
+  }
+}
+
+.blog-title-outer-3 {
+  flex: 1;
+}
+
+#blog-title {
+  margin: 0;
+}
+
+#blog-title a {
+  color: var(--text-light);
+  text-decoration: none;
+  font-size: 1.8em;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  letter-spacing: 0.5px;
+}
+
+#blog-title a:hover {
+  text-decoration: none;
+  color: var(--accent-color);
+}
+
+#blog-description {
+  color: rgba(255, 255, 255, 0.9);
+  margin: 5px 0 0 0;
+  font-size: 0.9em;
+  letter-spacing: 0.3px;
+}
+
+/* メインコンテンツ */
+#content {
+  display: grid;
+  grid-template-columns: 1fr 300px;
+  gap: 30px;
+  padding: 0 20px;
+}
+
+.column {
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  border: 1px solid var(--border-color);
+}
+
+#main {
+  padding: 25px;
+  overflow-x: hidden;
+}
+
+@media screen and (max-width: 900px) {
+  #main {
+    padding: 15px;
+  }
+  
+  .article-title {
+    margin: -15px -15px 20px -15px;
+    border-radius: 0;
+  }
+  
+  pre {
+    margin-left: -15px;
+    margin-right: -15px;
+    border-radius: 0;
+  }
+  
+  .section-header {
+    margin-left: -15px;
+    margin-right: -15px;
+    border-radius: 0;
+  }
+}
+
+/* サイドバー */
+.sidewrapper {
+  margin-bottom: 30px;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  border: 1px solid var(--border-color);
+}
+
+.sidetitle {
+  font-size: 1.1em;
+  font-weight: bold;
+  color: var(--text-dark);
+  padding: 15px;
+  border-bottom: 2px solid var(--main-color);
+}
+
+.sidebody {
+  padding: 12px 15px;
+  border-bottom: 1px solid #eee;
+}
+
+.sidebody:last-child {
+  border-bottom: none;
+}
+
+.sidebody a {
+  color: var(--text-dark);
+  text-decoration: none;
+  display: block;
+  transition: color 0.3s;
+}
+
+.sidebody a:hover {
+  color: var(--main-color);
+}
+
+/* 人気記事 */
+.plugin-popular {
+  margin-bottom: 30px;
+}
+
+.popular-post {
+  padding: 12px 15px;
+  border-bottom: 1px solid #eee;
+}
+
+.popular-post:last-child {
+  border-bottom: none;
+}
+
+.popular-post a {
+  display: block;
+  text-decoration: none;
+  color: var(--text-dark);
+}
+
+.popular-title {
+  display: block;
+  margin-bottom: 5px;
+  font-size: 0.9em;
+}
+
+.popular-views {
+  display: block;
+  font-size: 0.8em;
+  color: #666;
+}
+
+/* Jekyll バナー */
+.plugin-jekyll {
+  margin-bottom: 30px;
+  padding: 15px;
+  background: #f8f9fa;
+  border-radius: 8px;
+  border-left: 3px solid #949ea7;
+}
+
+.jekyll-banner {
+  text-align: center;
+}
+
+.jekyll-banner p {
+  margin: 0 0 8px 0;
+  font-size: 0.9em;
+  color: #666;
+}
+
+.jekyll-link {
+  font-size: 0.8em;
+  color: #777;
+  text-decoration: none;
+}
+
+.jekyll-link:hover {
+  text-decoration: underline;
+}
+
+/* ブログ開設ガイド */
+.plugin-guide {
+  margin-bottom: 30px;
+  padding: 15px;
+  background: #fff3e0;
+  border-radius: 8px;
+  border-left: 3px solid var(--accent-color);
+}
+
+.guide-banner {
+  text-align: center;
+}
+
+.guide-link {
+  display: block;
+  margin-bottom: 5px;
+  color: var(--accent-color);
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 0.9em;
+}
+
+.guide-link:hover {
+  text-decoration: underline;
+}
+
+.guide-note {
+  font-size: 0.8em;
+  color: #666;
+}
+
+/* カテゴリーナビ */
+.navigation {
+  display: none; /* PCでは非表示 */
+}
+
+@media screen and (max-width: 900px) {
+  .navigation {
+    display: block; /* モバイルでは表示 */
+  }
+}
+
+.category-nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin: 15px 0;
+}
+
+.tag {
+  display: inline-block;
+  background: var(--bg-light);
+  color: var(--text-dark);
+  padding: 8px 16px;
+  border-radius: 4px;
+  font-size: 0.9em;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  text-align: center;
+  border: 1px solid var(--border-color);
+}
+
+.tag:hover {
+  background: var(--hover-color);
+  text-decoration: none;
+  color: var(--text-light);
+  transform: translateY(-1px);
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+/* 記事カード */
+.post-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 20px;
+}
+
+.post-card-link {
+  text-decoration: none;
+  color: inherit;
+  display: block;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.post-card {
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  padding: 25px;
+  border: 1px solid var(--border-color);
+  position: relative;
+  transition-property: transform, box-shadow, border-color, opacity;
+  transition-duration: 0.15s;
+  transition-timing-function: ease-out;
+  will-change: transform, box-shadow;
+  backface-visibility: hidden;
+}
+
+.post-card-link:hover .post-card {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  border-color: var(--hover-color);
+}
+
+.post-card-link.clicked .post-card {
+  transform: translateY(0);
+  opacity: 0.8;
+  transition-duration: 0.15s;
+}
+
+.post-card h3 {
+  margin: 0 0 15px 0;
+  font-size: 1.4em;
+  letter-spacing: 0.3px;
+  line-height: 1.4;
+  color: var(--text-dark);
+}
+
+.post-card-link:hover h3 {
+  color: var(--hover-color);
+}
+
+.post-meta {
+  color: #666;
+  font-size: 0.9em;
+  margin-bottom: 10px;
+}
+
+.rating {
+  color: var(--accent-color);
+  margin-left: 10px;
+}
+
+.kit-info {
+  margin: 10px 0;
+  padding: 10px;
+  background: #f8f9fa;
+  border-radius: 4px;
+  border-left: 3px solid var(--main-color);
+}
+
+/* 記事スタイル */
+.article-title {
+  background: var(--main-color);
+  color: var(--text-light);
+  padding: 20px;
+  border-radius: 8px;
+  margin-bottom: 30px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+}
+
+.article-title h1 {
+  margin: 0;
+  font-size: 1.8em;
+  line-height: 1.4;
+}
+
+.section-header {
+  background: var(--main-color);
+  color: var(--text-light);
+  padding: 12px 20px;
+  margin: 40px 0;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+
+.section-header h2,
+.section-header h3 {
+  color: var(--text-light);
+  margin: 0;
+  font-size: 1.4em;
+  line-height: 1.4;
+}
+
+/* テーブルスタイル */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 20px 0;
+  background: white;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+
+th, td {
+  padding: 12px 15px;
+  text-align: left;
+  border-bottom: 1px solid var(--border-color);
+}
+
+th {
+  background: var(--bg-light);
+  font-weight: bold;
+  color: var(--text-dark);
+}
+
+/* フッター */
+.footer-outer {
+  margin-top: 50px;
+  padding: 30px 20px;
+  background: var(--main-color);
+  color: var(--text-light);
+  text-align: center;
+  border-top: 1px solid rgba(255,255,255,0.1);
+}
+
+.footer-outer p {
+  margin: 0;
+  font-size: 0.9em;
+  letter-spacing: 0.5px;
+  opacity: 0.9;
+}
+
+/* レスポンシブ */
+@media screen and (max-width: 900px) {
+  #content {
+    grid-template-columns: 1fr;
+  }
+  
+  .blog-title-outer-2 {
+    padding: 0 15px;
+  }
+  
+  #blog-title a {
+    font-size: 1.4em;
+  }
+
+  #blog-description {
+    font-size: 0.8em;
+  }
+
+  .category-nav {
+    flex-direction: column;
+    gap: 8px;
+    margin: 15px auto;
+    max-width: 300px;
+  }
+
+  .tag {
+    display: block;
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  .plugin-popular,
+  .plugin-jekyll,
+  .plugin-guide {
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
