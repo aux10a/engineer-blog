@@ -2,7 +2,7 @@
 layout: post
 title: "Cloudinaryを無料で賢く使う方法【スマホ・PC対応】"
 date: 2025-03-02
-categories: cost-saving
+category: cost-saving
 description: "Cloudinaryの無料プランを最大限活用するテクニックを紹介。特にキャッシュ機能を活用してAPIリクエスト制限を回避する方法や、効率的な画像最適化の手法を詳しく解説します。"
 ---
 
