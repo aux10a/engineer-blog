@@ -22,68 +22,15 @@
 
   {% seo %}
   <link rel="preload" href="{{ "/assets/css/style.css?v=" | append: site.github.build_revision | relative_url }}" as="style">
-  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap" as="style">
+  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&family=Source+Code+Pro:wght@400;600&display=swap" as="style">
   <link rel="stylesheet" href="{{ "/assets/css/style.css?v=" | append: site.github.build_revision | relative_url }}">
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&family=Source+Code+Pro:wght@400;600&display=swap" rel="stylesheet">
   
   {% for post in site.posts limit:3 %}
     <link rel="prefetch" href="{{ post.url | relative_url }}">
   {% endfor %}
 
-  <script>
-    // 検索機能
-    document.addEventListener('DOMContentLoaded', function() {
-      const searchInput = document.getElementById('search-input');
-      const searchButton = document.getElementById('search-button');
-      const searchResults = document.getElementById('search-results');
-
-      // 検索実行関数
-      function performSearch() {
-        const query = searchInput.value.toLowerCase();
-        if (query.length < 2) {
-          searchResults.innerHTML = '';
-          return;
-        }
-
-        fetch('/posts.json')
-          .then(response => response.json())
-          .then(posts => {
-            const results = posts.filter(post =>
-              post.title.toLowerCase().includes(query) ||
-              post.content.toLowerCase().includes(query)
-            ).slice(0, 5);
-
-            searchResults.innerHTML = results.length ?
-              results.map(post => `
-                <a href="${post.url}">
-                  ${post.title}
-                </a>
-              `).join('') :
-              '<p class="no-results">記事が見つかりませんでした</p>';
-          });
-      }
-
-      // イベントリスナー
-      searchButton.addEventListener('click', performSearch);
-      searchInput.addEventListener('keypress', function(e) {
-        if (e.key === 'Enter') performSearch();
-      });
-    });
-
-    // ページ遷移の最適化
-    document.addEventListener('DOMContentLoaded', function() {
-      document.querySelectorAll('.post-card-link').forEach(function(link) {
-        link.addEventListener('click', function(e) {
-          e.preventDefault();
-          const href = this.getAttribute('href');
-          this.classList.add('clicked');
-          setTimeout(() => {
-            window.location.href = href;
-          }, 150); // トランジションと同じタイミング
-        });
-      });
-    });
-  </script>
+  <script defer src="{{ '/assets/js/main.js' | relative_url }}"></script>
 </head>
 <body>
   <div id="container">

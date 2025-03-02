@@ -457,6 +457,55 @@ body {
   }
 }
 
+/* コードブロック */
+pre {
+  background: var(--main-dark);
+  border-radius: 8px;
+  padding: 20px;
+  margin: 20px 0;
+  position: relative;
+  overflow-x: auto;
+}
+
+pre code {
+  color: #e1e1e1;
+  font-family: 'Source Code Pro', monospace;
+  font-size: 0.9em;
+  line-height: 1.5;
+}
+
+.code-block {
+  position: relative;
+}
+
+.copy-button {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  background: rgba(255, 255, 255, 0.1);
+  border: none;
+  color: #fff;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 0.8em;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  opacity: 0;
+  z-index: 1;
+}
+
+.code-block:hover .copy-button {
+  opacity: 1;
+}
+
+.copy-button:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.copy-button.copied {
+  background: #2ecc71;
+}
+
 /* 記事スタイル */
 small {
   display: none;
