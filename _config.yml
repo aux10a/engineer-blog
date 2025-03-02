@@ -4,7 +4,7 @@ tagline: "気軽に始めるアプリ開発の小部屋 -低予算開発-"
 email: aunet041@gmail.com
 description: "低予算でのWeb開発手法やお手軽アプリ開発のコツ、便利なツールの紹介など、にゃんこ目線で気軽にエンジニアリングを楽しむブログです。"
 baseurl: ""
-url: "https://example.com" # 本番用URLに変更してください
+url: "https://aux10a.github.io/engineer-blog/" # 本番用URLに変更してください
 author:
   name: "管理人"
   email: "aunet041@gmail.com"
