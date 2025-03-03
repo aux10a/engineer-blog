@@ -12,7 +12,8 @@ permalink: /archive/
 
       <div class="category-nav">
         {% for category in site.category_names %}
-          <a href="/categories/{{ category[0] }}" class="tag">{{ category[1] }}</a>
+          {% capture category_url %}/categories/{{ category[0] }}/{% endcapture %}
+          <a href="{{ category_url | relative_url }}" class="tag">{{ category[1] }}</a>
         {% endfor %}
       </div>
 

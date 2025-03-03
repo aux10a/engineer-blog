@@ -8,22 +8,22 @@
   
   <!-- Open Graph / Facebook -->
   <meta property="og:type" content="{% if page.layout == 'review' %}article{% else %}website{% endif %}">
-  <meta property="og:url" content="{{ page.url | absolute_url }}">
+  <meta property="og:url" content="{{ page.url | relative_url | prepend: site.url }}">
   <meta property="og:title" content="{% if page.title %}{{ page.title }} | {{ site.title }}{% else %}{{ site.title }}{% endif %}">
   <meta property="og:description" content="{% if page.description %}{{ page.description }}{% else %}{{ site.description }}{% endif %}">
-  <meta property="og:image" content="{% if page.image %}{{ page.image | absolute_url }}{% else %}{{ site.url }}/assets/images/default-ogp.jpg{% endif %}">
+  <meta property="og:image" content="{% if page.image %}{{ page.image | relative_url | prepend: site.url }}{% else %}{{ '/assets/images/default-ogp.jpg' | relative_url | prepend: site.url }}{% endif %}">
   
   <!-- Twitter -->
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:site" content="@{{ site.twitter.username }}">
   <meta name="twitter:title" content="{% if page.title %}{{ page.title }} | {{ site.title }}{% else %}{{ site.title }}{% endif %}">
   <meta name="twitter:description" content="{% if page.description %}{{ page.description }}{% else %}{{ site.description }}{% endif %}">
-  <meta name="twitter:image" content="{% if page.image %}{{ page.image | absolute_url }}{% else %}{{ site.url }}/assets/images/default-ogp.jpg{% endif %}">
+  <meta name="twitter:image" content="{% if page.image %}{{ page.image | relative_url | prepend: site.url }}{% else %}{{ '/assets/images/default-ogp.jpg' | relative_url | prepend: site.url }}{% endif %}">
 
   {% seo %}
-  <link rel="preload" href="{{ "/assets/css/style.css?v=" | append: site.github.build_revision | relative_url }}" as="style">
+  <link rel="preload" href="{{ '/assets/css/style.css' | relative_url }}" as="style">
   <link rel="preload" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&family=Source+Code+Pro:wght@400;600&display=swap" as="style">
-  <link rel="stylesheet" href="{{ "/assets/css/style.css?v=" | append: site.github.build_revision | relative_url }}">
+  <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}">
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&family=Source+Code+Pro:wght@400;600&display=swap" rel="stylesheet">
   
   {% for post in site.posts limit:3 %}
@@ -47,7 +47,7 @@
           </picture>
         </div>
         <div class="blog-title-outer-3">
-          <h1 id="blog-title"><a href="/">{{ site.title }}</a></h1>
+          <h1 id="blog-title"><a href="{{ '/' | relative_url }}">{{ site.title }}</a></h1>
           <p id="blog-description">{{ site.tagline }}</p>
         </div>
       </div>
@@ -100,7 +100,8 @@
             <div class="side">
               {% for category in site.category_names %}
                 <div class="sidebody">
-                  <a href="/categories/{{ category[0] }}">{{ category[1] }}</a>
+                  {% capture category_url %}/categories/{{ category[0] }}/{% endcapture %}
+                  <a href="{{ category_url | relative_url }}">{{ category[1] }}</a>
                 </div>
               {% endfor %}
             </div>
@@ -115,14 +116,14 @@
               {% assign postsByYearMonth = site.posts | group_by_exp:"post", "post.date | date: '%Y年%m月'" %}
               {% for yearMonth in postsByYearMonth limit:12 %}
                 <div class="sidebody">
-                  <a href="/archive/#{{ yearMonth.name | replace: "年", "-" | replace: "月", "" }}">
+                  <a href="{{ '/archive/' | relative_url }}#{{ yearMonth.name | replace: "年", "-" | replace: "月", "" }}">
                     {{ yearMonth.name }} ({{ yearMonth.items | size }})
                   </a>
                 </div>
               {% endfor %}
               {% if site.posts.size > 12 %}
                 <div class="sidebody more-archives">
-                  <a href="/archive">過去の記事をもっと見る</a>
+                  <a href="{{ '/archive/' | relative_url }}">過去の記事をもっと見る</a>
                 </div>
               {% endif %}
             </div>

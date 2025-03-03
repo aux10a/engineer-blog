@@ -3,13 +3,18 @@ title: "にゃんこのお手軽エンジニアリング"
 tagline: "気軽に始めるアプリ開発の小部屋 -低予算開発-"
 email: aunet041@gmail.com
 description: "低予算でのWeb開発手法やお手軽アプリ開発のコツ、便利なツールの紹介など、にゃんこ目線で気軽にエンジニアリングを楽しむブログです。"
-baseurl: ""
-url: "https://aux10a.github.io/engineer-blog/" # 本番用URLに変更してください
+baseurl: "/engineer-blog"
+url: "https://aux10a.github.io"
+
+# URL settings
+permalink: /:categories/:year/:month/:day/:title:output_ext
+timezone: Asia/Tokyo
+
+# SEO settings
 author:
   name: "管理人"
   email: "aunet041@gmail.com"
 
-# SEO settings
 twitter:
   username: your-twitter-handle
   card: summary_large_image
@@ -24,14 +29,53 @@ social:
 
 # Build settings
 remote_theme: pages-themes/minimal@v0.2.0
+
+# Collections
+collections:
+  categories:
+    output: true
+    permalink: /categories/:name/
+
+# Default layouts and permalinks
+defaults:
+  - scope:
+      path: ""
+    values:
+      image: /assets/images/default-ogp.jpg
+  - scope:
+      path: ""
+      type: "posts"
+    values:
+      layout: "post"
+      permalink: /:categories/:year/:month/:day/:title/
+      author: "管理人"
+      comments: true
+      image: /assets/images/default-ogp.jpg
+  - scope:
+      path: ""
+      type: "categories"
+    values:
+      layout: "category"
+      image: /assets/images/category-ogp.jpg
+  - scope:
+      path: "archive.markdown"
+    values:
+      layout: "default"
+      permalink: /archive/
+
+# Directory settings
+archive_dir: archive
+archive_path: /archive/
+
+# Category settings
+category_path: /categories
+# Plugin and GitHub Pages settings
 plugins:
   - jekyll-feed
   - jekyll-seo-tag
   - jekyll-sitemap
   - jekyll-paginate
   - jekyll-remote-theme
-
-# GitHub Pages settings
 github: [metadata]
 encoding: UTF-8
 kramdown:
@@ -41,9 +85,11 @@ future: true
 jailed: false
 gfm_quirks: paragraph_end
 
-# Pagination
-paginate: 10
-paginate_path: "/page:num/"
+# Pagination settings
+paginate: 12
+paginate_path: "/page/:num/"
+page_excerpts: true
+excerpt_separator: <!-- more -->
 
 # Custom settings
 show_downloads: false
@@ -57,31 +103,6 @@ category_names:
   tech-tutorials: "技術チュートリアル"
   cost-saving: "低予算開発のノウハウ"
 
-# Collections
-collections:
-  reviews:
-    output: true
-    permalink: /reviews/:path/
-
-# Default front matter
-defaults:
-  - scope:
-      path: ""
-    values:
-      image: /assets/images/default-ogp.jpg
-  - scope:
-      path: ""
-      type: "posts"
-    values:
-      layout: post
-      author: "管理人"
-      comments: true
-      image: /assets/images/default-ogp.jpg
-  - scope:
-      path: "categories"
-    values:
-      layout: category
-      image: /assets/images/category-ogp.jpg
 
 # Exclude from processing.
 exclude:
@@ -103,4 +124,12 @@ markdown: kramdown
 highlighter: rouge
 sass:
   style: compressed
+  sass_dir: _sass
+  load_paths:
+    - _sass
+    - assets/css
 timezone: Asia/Tokyo
+
+# Additional settings for GitHub Pages
+repository: aux10a/engineer-blog
+environment: production

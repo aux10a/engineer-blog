@@ -2,6 +2,7 @@
 layout: default
 title: トップページ
 description: お手軽アプリ開発から便利ツールの紹介まで、にゃんこ目線でエンジニアリングの楽しさをお届けします。低予算でも実現できる開発手法や、実践的なプログラミングのコツを発信中！
+permalink: /
 ---
 
 <div class="column-inner">
@@ -10,7 +11,8 @@ description: お手軽アプリ開発から便利ツールの紹介まで、に�
       <h2>記事を探す</h2>
       <div class="category-nav">
         {% for category in site.category_names %}
-          <a href="/categories/{{ category[0] }}" class="tag">{{ category[1] }}</a>
+          {% capture category_url %}/categories/{{ category[0] }}/{% endcapture %}
+          <a href="{{ category_url | relative_url }}" class="tag">{{ category[1] }}</a>
         {% endfor %}
       </div>
     </div>
@@ -62,7 +64,7 @@ description: お手軽アプリ開発から便利ツールの紹介まで、に�
 
     {% if site.posts.size > 6 %}
     <div class="more-posts">
-      <a href="/archive" class="button">もっと見る →</a>
+      <a href="{{ '/archive/' | relative_url }}" class="button">もっと見る →</a>
     </div>
     {% endif %}
   </div>
