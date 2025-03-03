@@ -3,20 +3,27 @@ function setupSearch() {
   const searchInput = document.getElementById('search-input');
   const searchButton = document.getElementById('search-button');
   const searchResults = document.getElementById('search-results');
-  const searchDataElement = document.getElementById('search-data');
+  const searchDataList = document.getElementById('search-data-list');
 
-  if (!searchInput || !searchButton || !searchResults || !searchDataElement) {
+  if (!searchInput || !searchButton || !searchResults || !searchDataList) {
     console.error('検索に必要な要素が見つかりません');
     return;
   }
 
-  let searchData;
-  try {
-    searchData = JSON.parse(searchDataElement.textContent);
-  } catch (error) {
-    console.error('検索データの解析に失敗しました:', error);
-    return;
+  function decodeHtmlEntities(text) {
+    const textarea = document.createElement('textarea');
+    textarea.innerHTML = text;
+    return textarea.value;
   }
+
+  const searchData = {
+    posts: Array.from(searchDataList.querySelectorAll('.search-item')).map(item => ({
+      title: decodeHtmlEntities(item.dataset.title),
+      url: item.dataset.url,
+      content: decodeHtmlEntities(item.dataset.content),
+      category: item.dataset.category
+    }))
+  };
 
   function doSearch() {
     const query = searchInput.value.toLowerCase().trim();
@@ -34,7 +41,9 @@ function setupSearch() {
 
     if (results.length) {
       const html = results
-        .map(post => `<a href="${post.url}">${post.title}</a>`)
+        .map(post => `<a href="${post.url}" class="search-result-item">
+          <span class="search-result-title">${post.title}</span>
+        </a>`)
         .join('');
       searchResults.innerHTML = html;
     } else {
@@ -45,6 +54,15 @@ function setupSearch() {
   searchButton.addEventListener('click', doSearch);
   searchInput.addEventListener('keypress', function(e) {
     if (e.key === 'Enter') doSearch();
+  });
+
+  // インクリメンタルサーチ
+  searchInput.addEventListener('input', function() {
+    if (this.value.length >= 2) {
+      doSearch();
+    } else {
+      searchResults.innerHTML = '';
+    }
   });
 }
 
