@@ -2,7 +2,7 @@
 layout: post
 title: "GitHub PagesやVercelで使える！Cloudinaryで始める無料の画像管理"
 date: 2025-03-02
-categories: cost-saving
+category: cost-saving
 description: "GitHub PagesやVercelでの静的サイト構築時の画像管理に悩んでいませんか？Cloudinaryを使えば、無料で高機能な画像管理・最適化が実現できます。登録から基本的な使い方まで詳しく解説します。"
 ---
 

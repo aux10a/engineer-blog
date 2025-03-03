@@ -10,8 +10,7 @@ layout: default
       
       <div class="category-nav">
         {% for category in site.category_names %}
-          {% capture category_url %}/categories/{{ category[0] }}/{% endcapture %}
-          <a href="{{ category_url | relative_url }}"
+          <a href="{{ '/categories/' | append: category[0] | relative_url }}/"
              class="tag{% if page.category == category[0] %} active{% endif %}"
              {% if page.category == category[0] %}aria-current="page"{% endif %}>
             {{ category[1] }}
@@ -20,7 +19,8 @@ layout: default
       </div>
 
       <div class="post-list" itemscope itemtype="http://schema.org/Blog">
-        {% for post in site.categories[page.category] %}
+        {% assign category_posts = site.posts | where: "category", page.category %}
+        {% for post in category_posts %}
           <a href="{{ post.url | relative_url }}" class="post-card-link" itemprop="url">
             <div class="post-card" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
               <h3 itemprop="headline">{{ post.title }}</h3>
