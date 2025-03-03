@@ -200,7 +200,7 @@ Media Libraryを使って簡単に画像をアップロードできます：
    - よく使うサイズは先に生成
    - 新規生成の回数を減らす
 
-> 📌 詳しい活用テクニックは[こちらの記事]({% post_url 2025-03-02-cloudinary-free-plan %})で解説しています！
+> 📌 詳しい活用テクニックは[こちらの記事]({{ '/cost-saving/2025/03/02/cloudinary-free-plan' | relative_url }})で解説しています！
 
 <div class="section-header">
 <h2>🚀 実践的な使用例</h2>
@@ -247,7 +247,7 @@ const ProjectImage = () => (
 
 Cloudinaryの無料プランを最大限活用する方法について、より詳しく知りたい方はこちらの記事をご覧ください：
 
-👉 [Cloudinaryを無料で賢く使う方法【スマホ・PC対応】]({% post_url 2025-03-02-cloudinary-free-plan %})
+👉 [Cloudinaryを無料で賢く使う方法【スマホ・PC対応】]({{ '/cost-saving/2025/03/02/cloudinary-free-plan' | relative_url }})
 
 この記事では以下の内容を詳しく解説しています：
 - リクエスト制限の具体的な回避方法
