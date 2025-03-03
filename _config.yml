@@ -1,7 +1,7 @@
 # Site settings
 title: "にゃんこのお手軽エンジニアリング"
 tagline: "気軽に始めるアプリ開発の小部屋 -低予算開発-"
-email: aunet041@gmail.com
+email: ""
 description: "低予算でのWeb開発手法やお手軽アプリ開発のコツ、便利なツールの紹介など、にゃんこ目線で気軽にエンジニアリングを楽しむブログです。"
 baseurl: "/engineer-blog"
 url: "https://aux10a.github.io"
@@ -13,7 +13,7 @@ timezone: Asia/Tokyo
 # SEO settings
 author:
   name: "管理人"
-  email: "aunet041@gmail.com"
+  email: ""
 
 twitter:
   username: your-twitter-handle
